@@ -19,7 +19,7 @@ end
 remote_file "#{Chef::Config[:file_cache_path]}/suphp-#{node['suphp']['version']}.tar.gz" do
   source node['suphp']['url'] + 'suphp-' + node['suphp']['version'] + '.tar.gz'
   checksum node['suphp']['checksum']
-  notifies :run, 'bash[extract_suphp]'
+  notifies :run, 'bash[extract_suphp]', :immediately
 end
 
 bash 'extract_suphp' do
@@ -28,7 +28,7 @@ bash 'extract_suphp' do
   code <<-EOF
     tar xzf suphp-#{node['suphp']['version']}.tar.gz
   EOF
-  notifies :run, 'bash[install_suphp]'
+  notifies :run, 'bash[install_suphp]', :immediately
 end
 
 bash 'install_suphp' do

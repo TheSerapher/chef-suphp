@@ -3,6 +3,11 @@ suphp CHANGELOG
 
 This file is used to list changes made in each version of the suphp cookbook.
 
+0.1.2
+-----
+
+- [Sebastian Grewe] - Use paranoid mode for setid
+
 0.1.1
 -----
 

@@ -1,4 +1,4 @@
-default['suphp']['packages'] = %w{ php-devel httpd-devel }
+default['suphp']['packages'] = %w{ libtool php-devel httpd-devel }
 default['suphp']['cookbooks'] = %w{ php apache2 build-essential }
 default['suphp']['url'] = 'http://suphp.org/download/'
 default['suphp']['version'] = '0.7.2'

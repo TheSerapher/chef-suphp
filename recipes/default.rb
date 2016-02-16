@@ -36,10 +36,10 @@ if node['platform_family'] == 'rhel'
     action :nothing
     cwd Chef::Config[:file_cache_path] + '/suphp-' + node['suphp']['version']
     code <<-EOF
+      [[ '#{node['apache']['version']}' == '2.4' ]] && export CPPFLAGS="-I/usr/include/apr-0 -I/usr/include/apr-1"
       autoreconf -if
       ./configure #{node['suphp']['configure_opts']}
-      [[ '#{node['apache']['version']}' == '2.4' ]] && \
-        sed -e 's/^MAYBE_AP.*/MAYBE_AP\ =\ apache2/g' -i src/Makefile
+      [[ '#{node['apache']['version']}' == '2.4' ]] && sed -e 's/^MAYBE_AP.*/MAYBE_AP\ =\ apache2/g' -i src/Makefile
       make -j #{node['cpu']['total']}
       make install
     EOF

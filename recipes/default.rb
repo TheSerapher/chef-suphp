@@ -38,7 +38,7 @@ if node['platform_family'] == 'rhel'
     code <<-EOF
       autoreconf -if
       ./configure #{node['suphp']['configure_opts']}
-      httpd -V 2>/dev/null | grep -q 'Apache/2.* (CentOS)' && \
+      [[ '#{nodenode['apache']['version']}' == '2.4' ]] && \
         sed -e 's/^MAYBE_AP.*/MAYBE_AP\ =\ apache2/g' -i src/Makefile
       make -j #{node['cpu']['total']}
       make install
